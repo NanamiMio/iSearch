@@ -24,8 +24,8 @@ router.get('/add', function(req, res, next) {
 });
 
 router.post('/add', function(req, res, next) {
-  console.log(req.body.content);
-  var json = req.body.content;
+  console.log(req.body);
+  var json = req.body;
     Site.save(json,function(err){
       if(err) {
         res.send({'success':false,'err':err});
