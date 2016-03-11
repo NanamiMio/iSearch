@@ -15,13 +15,13 @@ var data = {};
 data['content'] = mdata;
 $.ajax({
 type: "POST",
-url: '/movie/add',
+url: '/site/add',
+dataType: 'json',
 data: data,
 success: function (data, textStatus){
 if(data.success){
 $('#msg').html('成功保存!');
 $('#msg').addClass('alert alert-success');
-$(location).attr('href','/movie/'+mdata.name);
 } else {
 $('#msg').html(data.err);
 $('#msg').addClass('alert alert-error');
