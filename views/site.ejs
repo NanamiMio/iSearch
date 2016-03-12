@@ -1,17 +1,15 @@
 <% include header.ejs %>
 
-<div class="container-fluid">
-<div class="row-fluid">
-<div class="span8">
-<form>
-<fieldset>
-<legend><%=label%></legend>
-<textarea id="c_editor" name="c_editor" class="span12" rows="10"></textarea>
-<button id="c_save" type="button" class="btn btn-primary">保存</button>
-</fieldset>
-<form>
-</div>
-</div>
-</div>
+  <form>
+    <div class="form-group">
+      <label for="siteName">Name</label>
+      <input type="text" class="form-control" id="siteName" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="siteLink">Link</label>
+      <input type="url" class="form-control" id="siteLink" placeholder="Link">
+    </div>
+    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+  </form>
 
-<% include footer.ejs %>
+  <% include footer.ejs %>

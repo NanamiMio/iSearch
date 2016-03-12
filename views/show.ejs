@@ -1,0 +1,14 @@
+<% include header.ejs %>
+  <script src="/javascripts/show.js"></script>
+  <div class="well jumbotron">
+    <h1><%= SiteName %></h1>
+    <a class="btn btn-primary btn-lg" href="<%= SiteLink %>" role="button">
+      <%= SiteLink %>
+    </a>
+    <a id="c_delete" class="btn btn-primary btn-lg" type="button">Delete</a>
+    <p id="_id">
+      <%= SiteId %>
+    </p>
+  </div>
+
+  <% include footer.ejs %>

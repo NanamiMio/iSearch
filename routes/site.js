@@ -8,53 +8,86 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/add', function(req, res, next) {
-  if(req.params.name){//update
+  if (req.params.name) { //update
     return res.render('site', {
-      title:req.params.name+'|网站|管理|iSearch',
-      label:'编辑网站:'+req.params.name,
-      site:req.params.name
+      title: req.params.name + '|网站|管理|iSearch',
+      label: '编辑网站:' + req.params.name,
+      site: req.params.name
     });
   } else {
-    return res.render('site',{
-      title:'新增加|网站|管理|iSearch',
-      label:'新增加网站',
-      site:false
+    return res.render('site', {
+      title: '新增加|网站|管理|iSearch',
+      label: '新增加网站',
+      site: false
     });
   }
 });
 
 router.post('/add', function(req, res, next) {
-  console.log(JSON.parse(req.body.content));
-  var json = JSON.parse(req.body.content);
-    Site.save(json,function(err){
-      if(err) {
-        res.send({'success':false,'err':err});
-      } else {
-        res.send({'success':true});
-      }
-    });
+  console.log(req.body);
+  Site.save(req.body, function(err) {
+    if (err) {
+      res.send({
+        'success': false,
+        'err': err
+      });
+    } else {
+      res.send({
+        'success': true
+      });
+    }
+  });
+});
+
+router.delete('/delete', function(req, res, next) {
+  console.log(req.body);
+  Site.deleteById(req.body.id, function(err) {
+    if (err) {
+      res.send({
+        'success': false,
+        'err': err
+      });
+    } else {
+      res.send({
+        'success': true
+      });
+    }
+  });
 });
 
 router.get('/:name', function(req, res, next) {
-  if(req.params.name){//update
+  if (req.params.name) { //update
     return res.render('site', {
-      title:req.params.name+'|网站|管理|iSearch',
-      label:'编辑网站:'+req.params.name,
-      site:req.params.name
+      title: req.params.name + '|网站|管理|iSearch',
+      label: '编辑网站:' + req.params.name,
+      site: req.params.name
     });
   } else {
-    return res.render('site',{
-      title:'新增加|网站|管理|iSearch',
-      label:'新增加网站',
-      site:false
+    return res.render('site', {
+      title: '新增加|网站|管理|iSearch',
+      label: '新增加网站',
+      site: false
     });
   }
 });
 
 router.get('/json/:name', function(req, res, next) {
-  Site.findByName(req.params.name,function(err, obj){
-res.send(obj);
+  Site.findByName(req.params.name, function(err, obj) {
+    console.log(obj.name);
+    res.send(obj);
+  });
 });
+
+router.get('/show/:name', function(req, res, next) {
+  Site.findByName(req.params.name, function(err, obj) {
+    res.render('show', {
+      title: obj.name,
+      SiteName: obj.name,
+      SiteLink: obj.link,
+      SiteId: obj._id,
+    });
+  });
 });
+
 
 module.exports = router;
