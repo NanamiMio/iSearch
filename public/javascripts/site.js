@@ -1,24 +1,19 @@
 $(function() {
 
 var mdata={};
-//var url = '/javascripts/site.json';
-var url = '';
-console.log($('#c_editor'));
-var site=$('#c_editor').attr('site');
-console.log("Site:",site);
+var url = '/javascripts/site.json';
+var site=$('#c_editor').attr('site')
 if(site){
 url = '/site/json/'+site;
 }
-console.log("URL:",url);
-if(url){
-  $.getJSON(url, function(data) {
-  mdata=data;
-  render_editor_form(mdata);
-  render_event_form(mdata);
-  });
-}
+
+$.getJSON(url, function(data) {
+mdata=data;
+render_editor_form(mdata);
+render_event_form(mdata);
+});
 var render_editor_form=function(data){
-mdata=$('#c_editor').val($.toJSON(data));
+$('#c_editor').val($.toJSON(data));
 };
 var render_event_form=function(){
 $('#c_save').on('click',function(event){
