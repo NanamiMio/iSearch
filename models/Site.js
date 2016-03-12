@@ -38,8 +38,6 @@ SiteDAO.prototype.deleteById = function(id, callback) {
 };
 
 SiteDAO.prototype.updateById = function(id, obj, callback) {
-  console.log(id);
-  console.log(obj);
   Site.findOneAndUpdate({
     _id: id
   }, obj, function(err) {

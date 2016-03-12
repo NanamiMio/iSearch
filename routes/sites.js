@@ -61,8 +61,7 @@ router.delete('/:id', function(req, res, next) {
 
 
 router.put('/:id', function(req, res, next) {
-  console.log(req.params);
-  Site.updateById(req.body.id, req.body, function(err) {
+  Site.updateById(req.params.id, req.body, function(err) {
     if (err) {
       res.send({
         'success': false,
