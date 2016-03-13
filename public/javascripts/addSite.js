@@ -4,7 +4,7 @@ $(function() {
   $('#submit').click(function() {
     mdata = {
       name: $('#siteName').val(),
-      link: $('#siteLink').val()
+      'url': $('#siteUrl').val()
     };
     console.log(mdata);
 

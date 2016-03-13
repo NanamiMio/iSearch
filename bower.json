@@ -1,0 +1,21 @@
+{
+  "name": "iSearch",
+  "description": "",
+  "main": "",
+  "authors": [
+    "shower <zhangshower@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/showerATP/iSearch",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

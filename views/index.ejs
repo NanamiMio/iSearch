@@ -1,9 +1,35 @@
 <% include header.ejs %>
 
-  <div class="well jumbotron">
-    <h1><%= title %></h1>
-    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <p><a class="btn btn-primary btn-lg" href="site/add" role="button">Add</a></p>
+
+  <div class="container">
+    <div class="well jumbotron">
+      <h1 class="text-center"><%= title %></h1>
+      <p class="text-center">Biger Than Biger</p>
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-lg btn-default" type="button">Search</button>
+        </span>
+      </div>
+    </div>
+
+    <div style="display:none">
+      <% if (Sites.length) { %>
+        <ul>
+          <% Sites.forEach(function(Site){ %>
+            <ul>
+              <li>
+                <%= Site.name %>
+              </li>
+              <li>
+                <%= Site.url %>
+              </li>
+            </ul>
+            <% }) %>
+        </ul>
+        <% } %>
+    </div>
   </div>
+
 
   <% include footer.ejs %>
