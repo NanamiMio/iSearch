@@ -2,33 +2,18 @@
 
 
   <div class="container">
-    <div class="well jumbotron">
-      <h1 class="text-center"><%= title %></h1>
-      <p class="text-center">Biger Than Biger</p>
+    <h1 class="text-center"><%= title %></h1>
+    <p class="text-center">Biger Than Biger</p>
+    <form id="searchFrom" action="/search" method="get">
       <div class="input-group">
-        <input type="text" class="form-control input-lg" placeholder="Search for...">
+        <input id="searchKey" name="name" type="text" class="form-control input-lg" placeholder="Search for...">
         <span class="input-group-btn">
-            <button class="btn btn-lg btn-default" type="button">Search</button>
+            <button id="search" class="btn btn-lg btn-default" type="button">Search</button>
         </span>
       </div>
-    </div>
+    </form>
 
-    <div style="display:none">
-      <% if (Sites.length) { %>
-        <ul>
-          <% Sites.forEach(function(Site){ %>
-            <ul>
-              <li>
-                <%= Site.name %>
-              </li>
-              <li>
-                <%= Site.url %>
-              </li>
-            </ul>
-            <% }) %>
-        </ul>
-        <% } %>
-    </div>
+
   </div>
 
 

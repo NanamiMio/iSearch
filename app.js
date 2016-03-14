@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var search = require('./routes/search');
@@ -27,6 +28,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'shower',
+  name:'iSearch',
+  idNum:22,
+  cookie: {maxAge:8000000},
+  saveUninitialized: false,
+  resave: false
+}));
 
 
 
