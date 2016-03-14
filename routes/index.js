@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     } else {
       res.render('index', {
         title: 'iSearch',
-        user: req.session.userName,
+        user: req.session.user.name,
         Sites : obj
       });
     }

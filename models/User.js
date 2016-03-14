@@ -2,7 +2,11 @@ var mongodb = require('./mongodb');
 var Schema = mongodb.mongoose.Schema;
 var UserSchema = new Schema({
   name: String,
-  pass: String
+  pass: String,
+  createDate: {type: Date, default: Date.now},
+  editDate: {type: Date, default: Date.now},
+  status: {type: String, default: 'User'},
+  permission: {type: Number, default: 10},
 });
 var User = mongodb.mongoose.model("User", UserSchema);
 var UserDAO = function() {};
@@ -55,14 +59,12 @@ UserDAO.prototype.updateById = function(id, obj, callback) {
 
 UserDAO.prototype.Verificate = function (name, pass ,callback) {
   User.findOne({name:name}, function(err, obj){
-    console.log(err);
-    var usr = obj;
     if(err){
       callback(err);
     }else if(obj){
       if(obj.pass==pass){
         callback(err, obj);
-      }    
+      }
     }else{
       callback();
     }

@@ -1,0 +1,20 @@
+<% include header.ejs %>
+
+  <div class="container">
+
+    <form id="settingFrom" class="form-signup" action="" method="post">
+      <h2 class="form-setting-heading">Please sign up</h2>
+      <label for="inputName" class="sr-only">Username</label>
+      <input type="text" name="inputName" class="form-control" placeholder="Username" required autofocus>
+      <label for="inputPass" class="sr-only">Current Password</label>
+      <input type="password" name="inputPass" class="form-control" placeholder="Password" required>
+      <label for="inputPass" class="sr-only">New Password</label>
+      <input type="password" name="inputPass" class="form-control" placeholder="New Password" required>
+      <label for="inputPass" class="sr-only">Repeat New Password</label>
+      <input type="password" name="repeatPass" class="form-control" placeholder="Repeat New Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Save setting</button>
+    </form>
+  </div>
+
+
+  <% include footer.ejs %>

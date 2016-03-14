@@ -3,11 +3,11 @@ var Schema = mongodb.mongoose.Schema;
 var SiteSchema = new Schema({
   name: String,
   url: String,
-  class: {type: String, default: 'Test'},
+  class: {type: String, default: 'Default'},
   createDate: {type: Date, default: Date.now},
   editDate: {type: Date, default: Date.now},
-  createUser: {type: String, default: 'tester'},
-  editUser: {type: String, default: 'tester'},
+  createUser: {type: String, default: 'System'},
+  editUser: {type: String, default: 'System'},
   adminChecked: {type: Number, default: 0},
   pageView: {type: Number, default: 0}
 });

@@ -30,49 +30,73 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  Site.save(req.body, function(err) {
-    if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
-    } else {
-      res.send({
-        'success': true
-      });
-    }
-  });
+  var user = req.session.user;
+  if (user.permission >= 10) {
+    Site.save(req.body, function(err) {
+      if (err) {
+        res.send({
+          'success': false,
+          'err': err
+        });
+      } else {
+        res.send({
+          'success': true
+        });
+      }
+    });
+  } else {
+    res.send({
+      'success': false,
+      'err': 'No permission'
+    });
+  }
 });
 
 router.delete('/:id', function(req, res, next) {
-  Site.deleteById(req.params.id, function(err) {
-    if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
-    } else {
-      res.send({
-        'success': true
-      });
-    }
-  });
+  var user = req.session.user;
+  if (user.permission >= 20) {
+    Site.deleteById(req.params.id, function(err) {
+      if (err) {
+        res.send({
+          'success': false,
+          'err': err
+        });
+      } else {
+        res.send({
+          'success': true
+        });
+      }
+    });
+  } else {
+    res.send({
+      'success': false,
+      'err': 'No permission'
+    });
+  }
 });
 
 
 router.put('/:id', function(req, res, next) {
-  Site.updateById(req.params.id, req.body, function(err) {
-    if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
-    } else {
-      res.send({
-        'success': true
-      });
-    }
-  });
+  var user = req.session.user;
+  if (user.permission >= 20) {
+    Site.updateById(req.params.id, req.body, function(err) {
+      if (err) {
+        res.send({
+          'success': false,
+          'err': err
+        });
+      } else {
+        res.send({
+          'success': true
+        });
+      }
+    });
+  } else {
+    res.send({
+      'success': false,
+      'err': 'No permission'
+    });
+  }
 });
 
 

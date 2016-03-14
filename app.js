@@ -8,6 +8,7 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var search = require('./routes/search');
+var sign = require('./routes/sign');
 var user = require('./routes/user');
 var admin = require('./routes/admin');
 var site = require('./routes/site');
@@ -29,18 +30,31 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'shower',
-  name:'iSearch',
-  idNum:22,
+  secret: 'ourt',
+  name: 'iSearch',
   cookie: {maxAge:8000000},
   saveUninitialized: false,
   resave: false
 }));
 
+app.use(function (req, res, next) {
+  var user = req.session.user;
+
+  if (!user) {
+    req.session.user = {
+      status: 'Guest',
+      permission: 0
+    };
+  }
+
+  next();
+})
+
 
 
 app.use('/', routes);
 app.use('/search', search);
+app.use('/sign', sign);
 app.use('/user', user);
 app.use('/admin', admin);
 app.use('/site', site);

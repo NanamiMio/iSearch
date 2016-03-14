@@ -3,105 +3,34 @@ var router = express.Router();
 
 var User = require('./../models/User.js');
 
+var iSearch = {
+  title: '',
+  user: ''
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('user');
+  var user = req.session.user;
+  if (user.name) {
+    res.render('user', {
+      title: user.name,
+      user: user.name
+    });
+  } else {
+    res.send('Please sign in first.')
+  }
 });
 
 router.get('/addSite', function(req, res, next) {
-  res.render('addSite', {
-    title: 'addSite',
-    user: req.session.userName
-  });
-});
-
-router.get('/signin', function(req, res, next) {
-  var sess = req.session;
-  if (sess.userName) {
-    res.redirect('/');
-  } else {
-    res.render('signin', {
-      title: 'Sign in',
-      user: req.session.userName
+  var user = req.session.user;
+  if (user.name) {
+    res.render('addSite', {
+      title: 'addSite',
+      user: user.name
     });
-  }
-});
-
-router.post('/signin', function(req, res, next) {
-  var sess = req.session,
-    body = req.body;
-  User.Verificate(body.inputName, body.inputPass, function(err, obj) {
-    if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
-    } else if (obj) {
-      sess.userName = obj.name;
-      sess.userId = obj.id;
-      if (body.Remed) {
-        sess.cookie.maxAge = 100000000;
-      }
-      res.redirect('/');
-    } else {
-      res.send({
-        'success': false,
-        'err': 'Wrong'
-      })
-    }
-  });
-});
-
-router.get('/signup', function(req, res, next) {
-  var sess = req.session;
-  if (sess.userName) {
-    res.redirect('/');
   } else {
-    res.render('signup', {
-      title: 'Sign up',
-      user: req.session.userName,
-    });
+    res.send('Please sign in first.')
   }
-});
-
-router.post('/signup', function(req, res, next) {
-  var sess = req.session,
-    body = req.body;
-  obj = {
-    'name': body.inputName,
-    'pass': body.inputPass
-  }
-  User.add(obj, function(err, obj) {
-    if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
-    } else {
-      console.log(obj);
-      sess.userName = obj.name;
-      sess.userId = obj.id;
-      if (body.Remed) {
-        sess.cookie.maxAge = 100000000;
-      }
-      res.send({
-        'success': true
-      });
-    }
-  });
-});
-
-router.get('/signout', function(req, res, next) {
-  req.session.destroy(function(err) {
-    if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
-    } else {
-      res.redirect('/');
-    }
-  })
 });
 
 module.exports = router;

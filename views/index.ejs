@@ -1,20 +1,17 @@
 <% include header.ejs %>
 
 
-  <div class="container-fluid">
+  <div class="container">
     <h1 class="text-center"><%= title %></h1>
     <p class="text-center">Find what you want</p>
     <form id="searchFrom" action="/search" method="get">
       <div class="input-group">
         <input id="searchKey" name="name" type="text" class="form-control input-lg" placeholder="Search for...">
         <span class="input-group-btn">
-            <button id="search" class="btn btn-lg btn-default" type="button">Search</button>
+            <button id="search" class="btn btn-lg btn-default" type="submit">Search</button>
         </span>
       </div>
     </form>
-
-
   </div>
-
 
   <% include footer.ejs %>
