@@ -10,7 +10,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/addSite', function(req, res, next) {
   res.render('addSite', {
-    title: 'addSite'
+    title: 'addSite',
+    user: req.session.userName
   });
 });
 
