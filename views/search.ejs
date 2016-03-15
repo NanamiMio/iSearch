@@ -1,0 +1,19 @@
+<% include header.ejs %>
+
+
+  <div class="container">
+    <% if (sites.length) { %>
+          <% sites.forEach(function(site){ %>
+<div class='jumbotron'>
+    <h2> <%= site.name %> </h2>
+    <a class="btn btn-primary" href= <%= site.url %> role="button">Go</a>
+
+
+
+               </div>
+            <% }) %>
+         <% } %>
+
+
+
+  <% include footer.ejs %>
