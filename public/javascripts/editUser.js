@@ -1,14 +1,25 @@
 $(function() {
 
-  var data = {};
+  var data = {},
+      status = $('#userStatus').val(),
+      permission = 0;
+
+  if(status == 'Administrator'){
+      permission = 20;
+  }
+  else{
+    permission = 10;
+  }
+
   $('#submit').click(function() {
     data = {
       _id: $('#userID').text(),
       name: $('#userName').val(),
-      pass: $('#userPass').val()
+      pass: $('#userPass').val(),
+      status: status,
+      permission: permission
     };
     console.log(data);
-    console.log('/users/'+data._id);
 
     $.ajax({
       type: "PUT",
@@ -18,11 +29,11 @@ $(function() {
       success: function(data, textStatus) {
         if (data.success) {
           alert('Edit success');
-          $(location).attr('href','/admin');
+          $(location).attr('href','/admin/users');
         } else {
 
         }
       }
     });
   });
-});
+})

@@ -1,12 +1,13 @@
 <% include header.ejs %>
 
-<script src="/javascripts/adminusers.js"></script>
+<script src="/javascripts/adminUsers.js"></script>
   <div class="container table-responsive">
     <table class="table table-striped">
       <tr>
         <th> ID </th>
         <th> Name </th>
-        <th> Url </th>
+        <th> Status </th>
+        <th> Permission </th>
         <th>  </th>
       </tr>
     <% if (users.length) { %>
@@ -14,11 +15,11 @@
         <tr id=<%= user._id %> >
           <td> <%= user._id %> </td>
           <td> <%= user.name %> </td>
-          <td> <%= user.url %> </td>
+          <td> <%= user.status %></td>
+          <td> <%= user.permission %></td>
           <td>
-            <a class="btn btn-primary" href=<%= user.url %> role="button">Go</a>
-            <a class="btn btn-primary" href=<%= '/admin/edituser/'+user.id %> role="button">Edit</a>
-            <a class="btn btn-primary" href="javascript:void(0);" onclick="userDelete('<%= user._id %>');" role="button">Delete</a>
+            <a class="btn btn-info" href=<%= '/admin/edituser/'+user.id %> role="button">Edit</a>
+            <a class="btn btn-danger" href="javascript:void(0);" onclick="userDelete('<%= user._id %>');">Delete</a>
           </td>
         </div>
         <% }) %>

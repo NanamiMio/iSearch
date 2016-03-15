@@ -18,7 +18,7 @@ $(function() {
       success: function(data, textStatus) {
         if (data.success) {
           alert('Edit success');
-          $(location).attr('href','/admin');
+          $(location).attr('href','/admin/sites');
         } else {
 
         }

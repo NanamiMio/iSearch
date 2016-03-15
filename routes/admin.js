@@ -70,6 +70,28 @@ router.get('/users', function(req, res, next) {
   }
 });
 
+router.get('/classes', function(req, res, next) {
+  var user = req.session.user;
+  if(user.permission >= 20){
+    Site.findAll(function(err, obj) {
+      if (err) {
+        res.send({
+          'success': false,
+          'err': err
+        });
+      } else {
+        res.render('adminClasses', {
+          title: 'Classes|Admin',
+          user: user.name,
+          classes : obj
+        });
+      }
+    });
+  } else{
+    res.send('No permission');
+  }
+});
+
 router.get('/editSite/:id', function(req, res, next) {
   var user = req.session.user;
   if(user.permission >= 20){
@@ -102,10 +124,10 @@ router.get('/editUser/:id', function(req, res, next) {
           'err': err
         });
       } else {
-        res.render('editSite', {
-          title: 'editSite',
+        res.render('editUser', {
+          title: 'Edit|User|Admin',
           user: user.name,
-          userr : user
+          userr : obj
         });
       }
     });

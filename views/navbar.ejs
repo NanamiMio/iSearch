@@ -15,7 +15,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if(user){ %>
+
           <li><a href="/user"><%= user %></a></li>
+          <% if(user == 'shower'){ %>
+            <li><a href="/admin">Admin</a></li>
+          <% } %>
           <li><a href="/sign/signout">Signout</a></li>
         <% }else{ %>
           <li><a href="/sign/signup">Signup</a></li>

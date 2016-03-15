@@ -1,0 +1,22 @@
+<% include header.ejs %>
+
+  <script src="/javascripts/adminClass.js"></script>
+  <div class="container table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> </th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="text" class="form-control" id="className" placeholder="Name">
+        </td>
+        <td>
+          <a class="btn btn-primary" href="javascript:void(0);" onclick="classAdd();">Add</a>
+        </td>
+
+    </table>
+  </div>
+  <% include footer.ejs %>

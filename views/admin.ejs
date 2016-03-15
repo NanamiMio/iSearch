@@ -2,15 +2,10 @@
 
 <script src="/javascripts/admin.js"></script>
   <div class="container">
-    <% if (sites.length) { %>
-      <% sites.forEach(function(site){ %>
-        <div class='jumbotron' id=<%= site._id %>>
-          <h2> <%= site.name %> </h2>
-          <a class="btn btn-primary" href=<%= site.url %> role="button">Go</a>
-          <a class="btn btn-primary" href=<%= 'admin/editSite/'+site.id %> role="button">Edit</a>
-          <a class="btn btn-primary" href="javascript:void(0);" onclick="siteDelete('<%= site._id %>');" role="button">Delete</a>
-          <p> <%= site._id %> </p>
-        </div>
-        <% }) %>
-          <% } %>
-            <% include footer.ejs %>
+    <a class="btn btn-info" href='/admin/sites'>Audit Sites</a>
+    <a class="btn btn-info" href='/admin/sites'>Manage Sites</a>
+    <a class="btn btn-info" href='/admin/users'>Manage Users</a>
+    <a class="btn btn-info" href='/admin/classes'>Manage Users</a>
+    <a class="btn btn-info" href=#>Reply Feedback</a>
+  </div>
+<% include footer.ejs %>
