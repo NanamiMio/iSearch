@@ -1,22 +1,24 @@
 $(function() {
 
-  var mdata = {};
+  var data = {};
   $('#submit').click(function() {
-    mdata = {
+    data = {
+      _id: $('#siteID').text(),
       name: $('#siteName').val(),
       'url': $('#siteUrl').val()
     };
-    console.log(mdata);
+    console.log(data);
+    console.log('/sites/'+data._id);
 
     $.ajax({
-      type: "POST",
-      url: '/site/add',
+      type: "PUT",
+      url: '/sites/'+data._id,
       dataType: 'json',
-      data: mdata,
+      data: data,
       success: function(data, textStatus) {
         if (data.success) {
-          alert('add success');
-          $(location).attr('href','/user');
+          alert('Edit success');
+          $(location).attr('href','/admin');
         } else {
 
         }

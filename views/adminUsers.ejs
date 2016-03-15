@@ -1,0 +1,27 @@
+<% include header.ejs %>
+
+<script src="/javascripts/adminusers.js"></script>
+  <div class="container table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Url </th>
+        <th>  </th>
+      </tr>
+    <% if (users.length) { %>
+      <% users.forEach(function(user){ %>
+        <tr id=<%= user._id %> >
+          <td> <%= user._id %> </td>
+          <td> <%= user.name %> </td>
+          <td> <%= user.url %> </td>
+          <td>
+            <a class="btn btn-primary" href=<%= user.url %> role="button">Go</a>
+            <a class="btn btn-primary" href=<%= '/admin/edituser/'+user.id %> role="button">Edit</a>
+            <a class="btn btn-primary" href="javascript:void(0);" onclick="userDelete('<%= user._id %>');" role="button">Delete</a>
+          </td>
+        </div>
+        <% }) %>
+          <% } %>
+    </table>
+            <% include footer.ejs %>

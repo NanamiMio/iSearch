@@ -3,7 +3,6 @@ var router = express.Router();
 
 var Site = require('./../models/Site.js');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   Site.findAll(function(err, obj) {
     if (err) {

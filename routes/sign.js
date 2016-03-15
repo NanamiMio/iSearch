@@ -8,7 +8,6 @@ var iSearch = {
   user: ''
 }
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.redirect('signup');
 });

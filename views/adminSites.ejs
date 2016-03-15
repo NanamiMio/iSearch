@@ -1,0 +1,27 @@
+<% include header.ejs %>
+
+<script src="/javascripts/admin.js"></script>
+  <div class="container table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Url </th>
+        <th>  </th>
+      </tr>
+    <% if (sites.length) { %>
+      <% sites.forEach(function(site){ %>
+        <tr id=<%= site._id %> >
+          <td> <%= site._id %> </td>
+          <td> <%= site.name %> </td>
+          <td> <%= site.url %> </td>
+          <td>
+            <a class="btn btn-primary" href=<%= site.url %> role="button">Go</a>
+            <a class="btn btn-primary" href=<%= '/admin/editSite/'+site.id %> role="button">Edit</a>
+            <a class="btn btn-primary" href="javascript:void(0);" onclick="siteDelete('<%= site._id %>');" role="button">Delete</a>
+          </td>
+        </div>
+        <% }) %>
+          <% } %>
+    </table>
+            <% include footer.ejs %>
