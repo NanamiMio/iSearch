@@ -12,19 +12,6 @@ router.get('/', function(req, res, next) {
   res.redirect('signup');
 });
 
-router.get('/addSite', function(req, res, next) {
-  var user = req.session.user;
-  if (user.name) {
-    console.log(user.name);
-    res.render('addSite', {
-      title: 'addSite',
-      user: user.name
-    });
-  } else {
-    res.send('Please sign in first.')
-  }
-});
-
 router.get('/signin', function(req, res, next) {
   var user = req.session.user;
   if (user.name) {
@@ -58,10 +45,11 @@ router.post('/signin', function(req, res, next) {
       }
       res.redirect('/');
     } else {
-      res.send({
-        'success': false,
-        'err': 'Wrong'
-      })
+      res.render('wrong', {
+        title: 'Wrong',
+        user: '',
+        message: 'Wrong name or password.'
+      });
     }
   });
 });
@@ -80,17 +68,26 @@ router.get('/signup', function(req, res, next) {
 
 router.post('/signup', function(req, res, next) {
   var user = req.session.user;
-    body = req.body;
+  body = req.body;
   obj = {
     'name': body.inputName,
     'pass': body.inputPass
   }
   User.add(obj, function(err, obj) {
+    console.log(err);
     if (err) {
-      res.send({
-        'success': false,
-        'err': err
-      });
+      if (err.userexists) {
+        res.render('wrong', {
+          title: 'Wrong',
+          user: '',
+          message: 'User Already exists.'
+        });
+      } else {
+        res.send({
+          'success': false,
+          'err': err
+        });
+      }
     } else {
       user.name = obj.name;
       user.id = obj.id;

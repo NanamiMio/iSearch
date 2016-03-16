@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Site = require('./../models/Site.js');
 var User = require('./../models/User.js');
+var Class = require('./../models/Class.js');
 
 router.get('/', function(req, res, next) {
   var user = req.session.user;
@@ -22,7 +23,11 @@ router.get('/', function(req, res, next) {
       }
     });
   } else{
-    res.send('No permission');
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'No permission.'
+    });
   }
 });
 
@@ -66,14 +71,18 @@ router.get('/users', function(req, res, next) {
       }
     });
   } else{
-    res.send('No permission');
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'No permission.'
+    });
   }
 });
 
 router.get('/classes', function(req, res, next) {
   var user = req.session.user;
   if(user.permission >= 20){
-    Site.findAll(function(err, obj) {
+    Class.findAll(function(err, obj) {
       if (err) {
         res.send({
           'success': false,
@@ -88,7 +97,11 @@ router.get('/classes', function(req, res, next) {
       }
     });
   } else{
-    res.send('No permission');
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'No permission.'
+    });
   }
 });
 
@@ -110,7 +123,11 @@ router.get('/editSite/:id', function(req, res, next) {
       }
     });
   } else{
-    res.send('No permission');
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'No permission.'
+    });
   }
 });
 
@@ -132,7 +149,11 @@ router.get('/editUser/:id', function(req, res, next) {
       }
     });
   } else{
-    res.send('No permission');
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'No permission.'
+    });
   }
 });
 

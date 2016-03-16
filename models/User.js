@@ -36,9 +36,22 @@ UserDAO.prototype.findByName = function(name, callback) {
 
 UserDAO.prototype.add = function(obj, callback) {
   var instance = new User(obj);
-  instance.save(function(err, obj) {
-    callback(err, obj);
+  User.findOne({
+    name: instance.name
+  }, function(err, obj) {
+    if(obj){
+      var userexists= {
+        userexists : true
+      };
+      callback(userexists, obj);
+    }else {
+      instance.save(function(err, obj) {
+        callback(err, obj);
+      });
+    }
   });
+
+
 };
 
 UserDAO.prototype.deleteById = function(id, callback) {
@@ -58,12 +71,17 @@ UserDAO.prototype.updateById = function(id, obj, callback) {
 };
 
 UserDAO.prototype.Verificate = function (name, pass ,callback) {
+  console.log('ver');
   User.findOne({name:name}, function(err, obj){
+    console.log(obj);
+    console.log(pass);
     if(err){
       callback(err);
     }else if(obj){
       if(obj.pass==pass){
         callback(err, obj);
+      }else{
+        callback();
       }
     }else{
       callback();

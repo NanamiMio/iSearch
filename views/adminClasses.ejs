@@ -1,7 +1,12 @@
 <% include header.ejs %>
 
-  <script src="/javascripts/adminClass.js"></script>
+  <script src="/javascripts/adminClasses.js"></script>
   <div class="container table-responsive">
+    <div class="page-header">
+       <h1>
+          Classes
+       </h1>
+    </div>
     <table class="table table-striped">
       <tr>
         <th> ID </th>
@@ -11,12 +16,24 @@
       <tr>
         <td></td>
         <td>
-          <input type="text" class="form-control" id="className" placeholder="Name">
+          <input type="text" class="form-control" id="addClassName" placeholder="Name">
         </td>
         <td>
           <a class="btn btn-primary" href="javascript:void(0);" onclick="classAdd();">Add</a>
         </td>
-
+        <% if (classes.length) { %>
+          <% classes.forEach(function(clas){ %>
+            <tr id=<%= clas._id %> >
+              <td><%= clas._id %></td>
+              <td>
+                <input type="text" class="form-control" id="className" placeholder="Name" value="<%= clas.name %>"> </td>
+              <td>
+                <a class="btn btn-info" href="javascript:void(0);" onclick="classUpdate('<%= clas._id %>');">Update</a>
+                <a class="btn btn-danger" href="javascript:void(0);" onclick="classDelete('<%= clas._id %>');">Delete</a>
+              </td>
+            </tr>
+            <% }) %>
+              <% } %>
     </table>
   </div>
   <% include footer.ejs %>

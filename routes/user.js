@@ -17,7 +17,11 @@ router.get('/', function(req, res, next) {
       user: user.name
     });
   } else {
-    res.send('Please sign in first.')
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'Please sign in first.'
+    });
   }
 });
 
@@ -29,7 +33,11 @@ router.get('/addSite', function(req, res, next) {
       user: user.name
     });
   } else {
-    res.send('Please sign in first.')
+    res.render('wrong', {
+      title: 'Wrong',
+      user: '',
+      message: 'Please sign in first.'
+    });
   }
 });
 
