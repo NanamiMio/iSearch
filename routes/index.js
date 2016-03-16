@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var Site = require('./../models/Site.js');
+var Class = require('./../models/Class.js');
 
 router.get('/', function(req, res, next) {
-  Site.findAll(function(err, obj) {
+  Class.findAll(function(err, obj) {
     if (err) {
       res.send({
         'success': false,
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
       res.render('index', {
         title: 'iSearch',
         user: req.session.user.name,
-        Sites : obj
+        classes : obj
       });
     }
   });

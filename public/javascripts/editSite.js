@@ -5,7 +5,8 @@ $(function() {
     data = {
       _id: $('#siteID').text(),
       name: $('#siteName').val(),
-      'url': $('#siteUrl').val()
+      'url': $('#siteUrl').val(),
+      'class': $('#siteClass').val()
     };
     console.log(data);
     console.log('/sites/'+data._id);

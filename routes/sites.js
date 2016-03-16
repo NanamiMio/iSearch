@@ -30,8 +30,9 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  console.log(req.body);
   var user = req.session.user;
-  if (user.permission >= 10) {
+  if (user.permission) {
     Site.save(req.body, function(err) {
       if (err) {
         res.send({

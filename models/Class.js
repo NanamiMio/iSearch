@@ -2,7 +2,6 @@ var mongodb = require('./mongodb');
 var Schema = mongodb.mongoose.Schema;
 var ClassSchema = new Schema({
   name: String,
-  class: {type: String, default: 'Default'},
   createDate: {type: Date, default: Date.now},
   editDate: {type: Date, default: Date.now},
   createUser: {type: String, default: 'System'},

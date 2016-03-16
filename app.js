@@ -12,7 +12,6 @@ var sign = require('./routes/sign');
 var user = require('./routes/user');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
-var site = require('./routes/site');
 var sites = require('./routes/sites');
 var classes = require('./routes/classes');
 
@@ -60,7 +59,6 @@ app.use('/sign', sign);
 app.use('/user', user);
 app.use('/users', users);
 app.use('/admin', admin);
-app.use('/site', site);
 app.use('/sites', sites);
 app.use('/classes', classes);
 

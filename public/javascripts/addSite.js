@@ -4,13 +4,14 @@ $(function() {
   $('#submit').click(function() {
     mdata = {
       name: $('#siteName').val(),
-      'url': $('#siteUrl').val()
+      'url': $('#siteUrl').val(),
+      'class': $('#siteClass').val()
     };
     console.log(mdata);
 
     $.ajax({
       type: "POST",
-      url: '/site/add',
+      url: '/sites/',
       dataType: 'json',
       data: mdata,
       success: function(data, textStatus) {

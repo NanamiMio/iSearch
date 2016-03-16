@@ -13,6 +13,13 @@
         </span>
       </div>
     </form>
+    <div class="text-center">
+    <% if (classes.length) { %>
+          <% classes.forEach(function(clas){ %>
+    <a class="btn btn-primary" href= '/search?class=<%= clas.name %>' role="button"> <%= clas.name %> </a>
+            <% }) %>
+         <% } %>
+</div>
   </div>
   </div>
 

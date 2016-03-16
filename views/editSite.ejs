@@ -4,9 +4,7 @@
     <form>
       <div class="form-group hidden">
         <label for="siteID">ID</label>
-        <p class="form-control-static" id="siteID">
-          <%= site.id %>
-        </p>
+        <p class="form-control-static" id="siteID"><%= site.id %></p>
       </div>
       <div class="form-group">
         <label for="siteName">Name</label>
@@ -17,8 +15,14 @@
         <input type="url" class="form-control" id="siteUrl" placeholder="Url" value="<%= site.url %>">
       </div>
       <div class="form-group">
-        <label for="siteClass">Url</label>
-        <input type="text" class="form-control" id="siteClass" placeholder="Class" value="<%= site.class %>">
+        <label for="siteClass">Class</label>
+        <select class="form-control" id="siteClass">
+            <% if (classes.length) { %>
+                  <% classes.forEach(function(clas){ %>
+            <option><%= clas.name %></option>
+                    <% }) %>
+                 <% } %>
+        </select>
       </div>
       <button type="button" class="btn btn-default" id="submit">Submit</button>
     </form>

@@ -107,6 +107,17 @@ router.get('/classes', function(req, res, next) {
 
 router.get('/editSite/:id', function(req, res, next) {
   var user = req.session.user;
+  var classes = {};
+  Class.findAll(function(err, obj) {
+    if (err) {
+      res.send({
+        'success': false,
+        'err': err
+      });
+    } else {
+      classes = obj;
+    }
+  });
   if(user.permission >= 20){
     Site.findById(req.params.id,function(err, obj) {
       if (err) {
@@ -118,7 +129,8 @@ router.get('/editSite/:id', function(req, res, next) {
         res.render('editSite', {
           title: 'editSite',
           user: user.name,
-          site : obj
+          site : obj,
+          classes: classes
         });
       }
     });
