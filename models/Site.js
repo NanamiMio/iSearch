@@ -3,7 +3,7 @@ var Schema = mongodb.mongoose.Schema;
 var SiteSchema = new Schema({
   name: String,
   url: String,
-  class: {type: String, default: 'Default'},
+  class: {type: String, default: ''},
   createDate: {type: Date, default: Date.now},
   editDate: {type: Date, default: Date.now},
   createUser: {type: String, default: 'System'},
@@ -60,4 +60,15 @@ SiteDAO.prototype.search = function (query, callback) {
     callback(err, obj);
   });
 };
+
+SiteDAO.prototype.updateClass = function(old, now, callback) {
+  Site.update({
+    class: old
+  }, {
+    class: now
+  }, function(err) {
+    callback(err);
+  });
+};
+
 module.exports = new SiteDAO();
